@@ -60,19 +60,12 @@
       <div class="separator"></div>
       <el-tabs v-model="activeTab" @tab-click="handleTabClick">
         <el-tab-pane label="待办">
-          <el-table :data="todoList" v-if="activeTab === 'todo'">
-            <!-- 表格列定义 -->
-          </el-table>
+
         </el-tab-pane>
         <el-tab-pane label="已办">
-          <el-table :data="doneList" v-if="activeTab === 'done'">
-            <!-- 表格列定义 -->
-          </el-table>
+
         </el-tab-pane>
         <el-tab-pane label="通知">
-          <el-table :data="noticeList" v-if="activeTab === 'notice'">
-            <!-- 表格列定义 -->
-          </el-table>
         </el-tab-pane>
       </el-tabs>
 
@@ -127,6 +120,7 @@ export default {
   },
   data() {
     return {
+      activeTab: '0',
       permission: {
         add: ['admin', 'todoDone:add'],
         edit: ['admin', 'todoDone:edit'],
@@ -145,6 +139,20 @@ export default {
     [CRUD.HOOK.beforeRefresh]() {
       return true
     }
+    ,
+    //切换tabs触发的的函数
+    handleTabClick(tab) {
+      if (tab.name === 'todo') {
+        // 获取待办列表数据
+        this.todoList = fetchData('todo');
+      } else if (tab.name === 'done') {
+        // 获取已办列表数据
+        this.doneList = fetchData('done');
+      } else if (tab.name === 'notice') {
+        // 获取通知列表数据
+        this.noticeList = fetchData('notice');
+      }
+    },
   }
 }
 </script>
