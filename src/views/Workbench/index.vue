@@ -56,25 +56,7 @@
         </div>
       </el-dialog>
 
-<!--      黑色分割线-->
-      <div class="separator"></div>
-      <el-tabs v-model="activeTab" @tab-click="handleTabClick">
-        <el-tab-pane label="待办">
-          <el-table :data="todoList" v-if="activeTab === 'todo'">
-            <!-- 表格列定义 -->
-          </el-table>
-        </el-tab-pane>
-        <el-tab-pane label="已办">
-          <el-table :data="doneList" v-if="activeTab === 'done'">
-            <!-- 表格列定义 -->
-          </el-table>
-        </el-tab-pane>
-        <el-tab-pane label="通知">
-          <el-table :data="noticeList" v-if="activeTab === 'notice'">
-            <!-- 表格列定义 -->
-          </el-table>
-        </el-tab-pane>
-      </el-tabs>
+
 
 
       <!--表格渲染-->
