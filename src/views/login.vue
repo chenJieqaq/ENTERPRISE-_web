@@ -97,14 +97,14 @@ export default {
   data() {
     return {
       Background: Background,
-      codeUrl: "",
-      cookiePass: "",
+      codeUrl: '',
+      cookiePass: '',
       loginForm: {
-        username: "admin",
-        password: "123456",
+        username: 'admin',
+        password: '123456',
         rememberMe: false,
-        code: "",
-        uuid: ""
+        code: '',
+        uuid: ''
       },
       loginRules: {
         username: [

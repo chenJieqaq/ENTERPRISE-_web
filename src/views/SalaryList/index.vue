@@ -39,6 +39,12 @@
           <el-form-item label="员工姓名">
             <el-input v-model="form.deployeeName" style="width: 370px;" />
           </el-form-item>
+          <el-form-item label="跟新时间">
+            <el-input v-model="form.updateAt" style="width: 370px;" />
+          </el-form-item>
+          <el-form-item label="创建时间">
+            <el-input v-model="form.createAt" style="width: 370px;" />
+          </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button type="text" @click="crud.cancelCU">取消</el-button>
@@ -56,6 +62,8 @@
         <el-table-column prop="createby" label="创建人" />
         <el-table-column prop="updateby" label="更新人" />
         <el-table-column prop="deployeeName" label="员工姓名" />
+        <el-table-column prop="updateAt" label="跟新时间" />
+        <el-table-column prop="createAt" label="创建时间" />
         <el-table-column v-if="checkPer(['admin','salary:edit','salary:del'])" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
@@ -79,13 +87,13 @@ import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
 
-const defaultForm = { deployNo: null, basic: null, performance: null, total: null, isdelete: null, createby: null, updateby: null, deployeeName: null }
+const defaultForm = { deployNo: null, basic: null, performance: null, total: null, isdelete: null, createby: null, updateby: null, deployeeName: null, updateAt: null, createAt: null }
 export default {
-  name: 'SalaryList',
+  name: 'Salary',
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: 'salary', url: 'api/salary', idField: 'deployNo', sort: 'deployNo,desc', crudMethod: { ...crudSalary }})
+    return CRUD({ title: '薪资管理接口', url: 'api/salary', idField: 'deployNo', sort: 'deployNo,desc', crudMethod: { ...crudSalary }})
   },
   data() {
     return {
