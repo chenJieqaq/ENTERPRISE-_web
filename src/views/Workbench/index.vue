@@ -55,6 +55,28 @@
           <el-button :loading="crud.status.cu === 2" type="primary" @click="crud.submitCU">确认</el-button>
         </div>
       </el-dialog>
+
+<!--      黑色分割线-->
+      <div class="separator"></div>
+      <el-tabs v-model="activeTab" @tab-click="handleTabClick">
+        <el-tab-pane label="待办">
+          <el-table :data="todoList" v-if="activeTab === 'todo'">
+            <!-- 表格列定义 -->
+          </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="已办">
+          <el-table :data="doneList" v-if="activeTab === 'done'">
+            <!-- 表格列定义 -->
+          </el-table>
+        </el-tab-pane>
+        <el-tab-pane label="通知">
+          <el-table :data="noticeList" v-if="activeTab === 'notice'">
+            <!-- 表格列定义 -->
+          </el-table>
+        </el-tab-pane>
+      </el-tabs>
+
+
       <!--表格渲染-->
       <el-table ref="table" v-loading="crud.loading" :data="crud.data" size="small" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
         <el-table-column type="selection" width="55" />
@@ -128,5 +150,8 @@ export default {
 </script>
 
 <style scoped>
-
+.separator {
+  border-bottom: 2px solid black;
+  margin-top: 20px;
+}
 </style>
