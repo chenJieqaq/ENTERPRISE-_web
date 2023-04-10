@@ -12,6 +12,19 @@
       </div>
       <!--如果想在工具栏加入更多按钮，可以使用插槽方式， slot = 'left' or 'right'-->
       <crudOperation :permission="permission" />
+
+      <!--      黑色分割线-->
+      <div class="separator"></div>
+      <el-tabs v-model="activeTab" @tab-click="handleTabClick">
+        <el-tab-pane label="待办">
+
+        </el-tab-pane>
+        <el-tab-pane label="已办">
+
+        </el-tab-pane>
+        <el-tab-pane label="通知">
+        </el-tab-pane>
+      </el-tabs>
       <!--表单组件-->
       <el-dialog :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="500px">
         <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
@@ -128,5 +141,8 @@ export default {
 </script>
 
 <style scoped>
-
+.separator {
+  border-bottom: 2px solid black;
+  margin-top: 20px;
+}
 </style>
