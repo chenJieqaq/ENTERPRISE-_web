@@ -10,7 +10,7 @@ import { filterAsyncRouter } from '@/store/modules/permission'
 NProgress.configure({ showSpinner: false })// NProgress Configuration
 
 const whiteList = ['/login']// no redirect whitelist
-
+// 判断是否登录
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title + ' - ' + Config.title
