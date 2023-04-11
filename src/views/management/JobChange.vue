@@ -9,7 +9,7 @@
         <el-step title="直属总监审批" />
       </el-steps>
     </div>
-    <div v-if="true" class="form">
+    <div v-if="activeStep==0" class="form">
       <el-form :model="form" label-width="100px">
         <el-form-item label="Replacement Person">
           <el-input v-model="form.name" placeholder="请填写申请人姓名" />
@@ -26,7 +26,11 @@
       </el-form>
     </div>
     <div class="actions">
-      <el-button v-if="activeStep === 0" type="primary" @click="submitForm">Submit Request</el-button>
+      <el-button
+        v-if="activeStep === 0"
+        type="primary"
+        @click="submitForm"
+      >Submit Request</el-button>
       <el-button v-if="activeStep !== 0" @click="prevStep">Previous Step</el-button>
       <el-button v-if="activeStep !== 3" type="primary" @click="nextStep">Next Step</el-button>
       <el-button v-if="activeStep === 3" type="success" @click="approve">Approve</el-button>
@@ -40,6 +44,7 @@ export default {
   name: 'JobChange',
   data() {
     return {
+
       activeStep: 0,
       form: {
         name: '',

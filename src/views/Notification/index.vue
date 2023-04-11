@@ -7,7 +7,7 @@
       <el-table-column prop="title" label="通知标题" />
       <el-table-column prop="content" label="通知内容" />
       <el-table-column prop="cteatedAt" label="创建时间" />
-      <el-table-column prop="updatedAt" label="更新时间" />
+      <!--      <el-table-column prop="updatedAt" label="更新时间" />-->
 
     </el-table>
     <!--分页组件-->
