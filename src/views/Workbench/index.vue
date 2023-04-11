@@ -108,7 +108,7 @@ import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
 import Notification from '@/views/Notification'
 
-const defaultForm = { id: null, title: null, content: null, deadline: null, createdAt: null, updatedAt: null, status: null, type: null, isdelete: null }
+const defaultForm = { id: null, title: null, content: null, deadline: null, createdAt: null, updatedAt: null, deployNo: null, status: null, type: null, isdelete: null }
 export default {
   name: 'TodoDone',
   // eslint-disable-next-line vue/no-unused-components

@@ -32,7 +32,8 @@
         @click="submitForm"
       >Submit Request</el-button>
       <el-button v-if="activeStep !== 0" @click="prevStep">Previous Step</el-button>
-      <el-button v-if="activeStep !== 3" type="primary" @click="nextStep">Next Step</el-button>
+      <el-button v-if="activeStep < 1" type="primary" @click="commitStep">确认</el-button>
+      <el-button v-if="activeStep !== 3 && activeStep !== 0" type="primary" @click="nextStep">Next Step</el-button>
       <el-button v-if="activeStep === 3" type="success" @click="approve">Approve</el-button>
       <el-button v-if="activeStep === 3" type="danger" @click="reject">Reject</el-button>
     </div>
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import crudTodoDone from '@/api/todoDone.js'
 export default {
   name: 'JobChange',
   data() {
@@ -65,6 +67,16 @@ export default {
     },
     nextStep() {
       this.activeStep += 1
+    },
+    commitStep() {
+      this.activeStep += 1
+      crudTodoDone.add({
+        title: '岗位调动',
+        // eslint-disable-next-line no-undef
+        content: '姓名' + form.name + '  ' + this.form.oldPosition + '>>' + this.form.newPosition + this.form.newPosition,
+        deployeeNo: '3',
+        type: '待办'
+      })
     },
     approve() {
       // Approve request at HR or Director level
