@@ -72,7 +72,10 @@
             <el-table-column prop="deadline" label="deadline" />
             <el-table-column prop="type" label="type" />
           </el-table>
+          <!--分页组件-->
+          <pagination />
         </el-tab-pane>
+
         <el-tab-pane label="已办" name="已办">
           <!--表格渲染-->
           <el-table ref="table" v-loading="crud.loading" :data="crud.data" size="small" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
@@ -81,14 +84,17 @@
             <el-table-column prop="content" label="content" />
             <el-table-column prop="deadline" label="deadline" />
             <el-table-column prop="type" label="type" />
-
           </el-table>
+          <!--分页组件-->
+          <pagination />
         </el-tab-pane>
-        <el-tab-pane label="通知" name="通知" />
+
+        <el-tab-pane label="通知" name="通知">
+          <notification />
+        </el-tab-pane>
+
       </el-tabs>
 
-      <!--分页组件-->
-      <pagination />
     </div>
   </div>
 </template>
@@ -100,12 +106,13 @@ import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
 import udOperation from '@crud/UD.operation'
 import pagination from '@crud/Pagination'
+import Notification from '@/views/Notification'
 
 const defaultForm = { id: null, title: null, content: null, deadline: null, createdAt: null, updatedAt: null, status: null, type: null, isdelete: null }
 export default {
   name: 'TodoDone',
   // eslint-disable-next-line vue/no-unused-components
-  components: { pagination, crudOperation, rrOperation, udOperation },
+  components: { Notification, pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   dicts: ['title'],
   cruds() {
