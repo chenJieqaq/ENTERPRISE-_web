@@ -3,34 +3,34 @@
     <h2>Job Replacement Request</h2>
     <div class="steps">
       <el-steps :active="activeStep" finish-status="success">
-        <el-step title="Initiate Request"></el-step>
-        <el-step title="Department Manager Approval"></el-step>
-        <el-step title="HR Approval"></el-step>
-        <el-step title="Director Approval"></el-step>
+        <el-step title="申请初始化" />
+        <el-step title="部门经理审批" />
+        <el-step title="HR审批" />
+        <el-step title="直属总监审批" />
       </el-steps>
     </div>
-    <div class="form">
+    <div v-if="true" class="form">
       <el-form :model="form" label-width="100px">
         <el-form-item label="Replacement Person">
-          <el-input v-model="form.name" placeholder="Enter the name of the replacement person"></el-input>
+          <el-input v-model="form.name" placeholder="请填写申请人姓名" />
         </el-form-item>
         <el-form-item label="Current Position">
-          <el-input v-model="form.oldPosition" placeholder="Enter the current position"></el-input>
+          <el-input v-model="form.oldPosition" placeholder="目前职位" />
         </el-form-item>
         <el-form-item label="New Position">
-          <el-input v-model="form.newPosition" placeholder="Enter the new position"></el-input>
+          <el-input v-model="form.newPosition" placeholder="申请职位" />
         </el-form-item>
-        <el-form-item label="Reason for Replacement">
-          <el-input v-model="form.reason" type="textarea" placeholder="Enter the reason for replacement"></el-input>
+        <el-form-item label="原因">
+          <el-input v-model="form.reason" type="textarea" placeholder="请填写申请原因" />
         </el-form-item>
       </el-form>
     </div>
     <div class="actions">
-      <el-button type="primary" v-if="activeStep === 0" @click="submitForm">Submit Request</el-button>
+      <el-button v-if="activeStep === 0" type="primary" @click="submitForm">Submit Request</el-button>
       <el-button v-if="activeStep !== 0" @click="prevStep">Previous Step</el-button>
-      <el-button type="primary" v-if="activeStep !== 3" @click="nextStep">Next Step</el-button>
-      <el-button type="success" v-if="activeStep === 3" @click="approve">Approve</el-button>
-      <el-button type="danger" v-if="activeStep === 3" @click="reject">Reject</el-button>
+      <el-button v-if="activeStep !== 3" type="primary" @click="nextStep">Next Step</el-button>
+      <el-button v-if="activeStep === 3" type="success" @click="approve">Approve</el-button>
+      <el-button v-if="activeStep === 3" type="danger" @click="reject">Reject</el-button>
     </div>
   </div>
 </template>
