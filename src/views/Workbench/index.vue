@@ -60,7 +60,7 @@
       <!--      黑色分割线-->
       <div class="separator" />
       <el-tabs v-model="activeTab" @tab-click="handleTabClick">
-        <el-tab-pane label="待办">
+        <el-tab-pane label="待办" name="待办">
           <!--表格渲染-->
           <el-table ref="table" v-loading="crud.loading" :data="crud.data" size="small" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
             <el-table-column type="selection" width="55" />
@@ -87,7 +87,7 @@
             </el-table-column>
           </el-table>
         </el-tab-pane>
-        <el-tab-pane label="已办">
+        <el-tab-pane label="已办" name="已办">
           <!--表格渲染-->
           <el-table ref="table" v-loading="crud.loading" :data="crud.data" size="small" style="width: 100%;" @selection-change="crud.selectionChangeHandler">
             <el-table-column type="selection" width="55" />
@@ -114,7 +114,7 @@
             </el-table-column>
           </el-table>
         </el-tab-pane>
-        <el-tab-pane label="通知" />
+        <el-tab-pane label="通知" name="通知" />
       </el-tabs>
 
       <!--分页组件-->
@@ -142,7 +142,11 @@ export default {
   },
   data() {
     return {
-      activeTab: '1',
+      activeTab: '待办',
+      querys: {
+        type: '待办',
+        title: ''
+      },
       permission: {
         add: ['admin', 'todoDone:add'],
         edit: ['admin', 'todoDone:edit'],
@@ -156,19 +160,25 @@ export default {
       ]
     }
   },
+  // 钩子函数
+  mounted() {
+    console.log(this.querys.type)
+    this.handleTabClick()
+    this.crud.params = { type: this.querys.type }
+    this.crud.toQuery()
+  },
   methods: {
     // 钩子：在获取表格数据之前执行，false 则代表不获取数据
     [CRUD.HOOK.beforeRefresh]() {
-      console.log('==========================')
+
     },
-    mounted() {
-      this.crud.params = { type: '待办' }
-      this.crud.toQuery()
-    },
+
     handleTabClick() {
       // this.crud.params= {title:'人事管理'};
       // this.crud.toQuery();
-      this.crud.params = { type: '待办' }
+      this.querys.type = this.activeTab
+      console.log(this.activeTab)
+      this.crud.params = { type: this.querys.type }
       this.crud.toQuery()
     }
   }
