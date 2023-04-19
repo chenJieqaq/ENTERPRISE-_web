@@ -73,7 +73,7 @@ export default {
       crudTodoDone.add({
         title: '岗位调动',
         // eslint-disable-next-line no-undef
-        content: '姓名' + form.name + '  ' + this.form.oldPosition + '>>' + this.form.newPosition + this.form.newPosition,
+        content: this.form.name + this.form.oldPosition + this.form.newPosition,
         deployeeNo: '3',
         type: '待办'
       })
